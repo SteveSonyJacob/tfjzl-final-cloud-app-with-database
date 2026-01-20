@@ -13,9 +13,9 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 def submit(request,course_id):
     user = request.user
-    course = get_object_or_404(Course,course_id)
+    course = get_object_or_404(Course,id = course_id)
     enrollment = Enrollment.objects.get(user=user,course=course)
-    submission = Submission.objects.create(enrollment)
+    submission = Submission.objects.create(enrollment = enrollment)
     choices = extract_answers(request)
     submission.choices.set(choices)
     submission_id = submission.id
@@ -23,8 +23,8 @@ def submit(request,course_id):
 
 def show_exam_result(request,course_id,submission_id):
     context = {}
-    course = Course.objects.get(course_id = course_id)
-    submission = Submission.objects.get(submission_id = submission_id)
+    course = get_object_or_404(Course, id=course_id)
+    submission = Submission.objects.get(id = submission_id)
     choices = submission.choices.all()
     total = 0
     for question in course.question_set.all():

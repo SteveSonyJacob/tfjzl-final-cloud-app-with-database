@@ -34,9 +34,9 @@ def show_exam_result(request,course_id,submission_id):
             total += question.grade
     context['course'] = course
     context['choices'] = choices
-    context['total_score'] = total
+    context['grade'] = total
 
-    return render(request,'onlinecourse/exam_result_bootstrap.html',context)cted
+    return render(request,'onlinecourse/exam_result_bootstrap.html',context)
 
 def registration_request(request):
     context = {}

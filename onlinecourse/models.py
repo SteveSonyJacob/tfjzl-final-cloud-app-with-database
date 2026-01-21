@@ -116,7 +116,7 @@ class Question(models.Model):
             return False
 
 class Choice(models.Model):
-    course = models.ForeignKey(Question,on_delete = models.CASCADE)
+    question = models.ForeignKey(Question,on_delete = models.CASCADE)
     content = models.TextField(max_length = 100)
     is_correct = models.BooleanField(default = False)
 
